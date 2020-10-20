@@ -1,4 +1,8 @@
-# Machine Learning in OCaml
+# Statistics and Machine Learning in OCaml
+
+## Motivation
+
+I absolutely love statistics and want to gain more experience with hands-on machine learning. Functional programming is also a difficult (being self-taught), but extremely rewarding challenge. 
 
 ## Installation
 
@@ -10,9 +14,9 @@
 
 4. (_Optional_) `opam switch create 4.11.1` to change switch (version)
 
-5. (_Optional_) `opam switch set-description "Tensorflow"` to add a description to existing switch
+5. (_Optional_) `opam switch set-description "<desc>"` to add a description to existing switch
 
-6. `opam install core dune utop merlin owl owl-base owl-top owl-zoo` to install packages
+6. `opam install core dune utop merlin owl owl-base owl-top owl-zoo` to install packages (I think these are all the necessary ones)
 
 ## Basic Opam/Dune Commands
 
@@ -147,3 +151,7 @@ dune build dataframe.exe
 
 dune exec ./dataframe.exe
 ```
+
+### Extras
+
+`train.csv` and `test.csv` are basic, one-feature datasets for linear regression - not currently being used
