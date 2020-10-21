@@ -31,12 +31,18 @@
 
 	Mu is the probability of landing on X, either heads (0) or tails (1)
 
+	For n > 1 trials, multiple by N nCr k (combinations)
+
 *)
 
-let () =
-	
+open! Owl
+
+let monte_carlo _ = 
+
 	(* initiates Random *)
 	Random.self_init () ;
+
+	Printf.printf "\nStarting Monte Carlo simulation...\n";
 
 	(* total is for counting the number of sucesses, stored as 
 		a reference to count through the loop
@@ -45,7 +51,7 @@ let () =
 	(* defined number of trials *)
 	let num_trials = 1000 in
 
-
+	(* running probability *)
 	for i = 1 to num_trials do
 
 		(* print out every 10 trials *)
@@ -60,4 +66,34 @@ let () =
 		;	
 
 	done
+	;
+
+	print_endline "End of Monte Carlo simulation."
 ;;
+
+let binomial_dist _ =
+
+	Printf.printf "\nStarting binomial distribution...\n" ;
+
+	let total = ref 0. in
+	let num_trials = 1000 in
+	let prob_success = 0.3 in
+
+	(* uses Stats module *)
+	let flips = Array.make num_trials 0 in
+  	let outcomes = Array.map (fun _ -> Stats.binomial_rvs ~p:prob_success ~n:1) flips in
+  	outcomes |> Array.iter (fun x -> total := !total +. float_of_int x ; print_int x) ;
+  	Printf.printf "\n" ;
+
+  	(* total probability *)
+  	Printf.printf "%f" (!total /. float_of_int num_trials) ;
+
+  	Printf.printf "\nEnding binomial distribution\n"
+
+;;
+
+let _ = 
+	monte_carlo () ;
+	binomial_dist ()
+
+
