@@ -62,6 +62,8 @@ This expected value or distribution for binary outcomes can also be modeled by t
 
 `P(X) = mu^x * (1 - mu)^{1-x} where P(X = 1) = mu and X in {0, 1}`
 
+The execution also includes the binomial distribution, binomial PDF, and binomial CDF from the `Stats` module.
+
 To run:
 
 ```shell

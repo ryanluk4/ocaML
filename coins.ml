@@ -69,6 +69,7 @@ let monte_carlo _ =
 	;
 
 	print_endline "End of Monte Carlo simulation."
+
 ;;
 
 let binomial_dist _ =
@@ -85,15 +86,50 @@ let binomial_dist _ =
   	outcomes |> Array.iter (fun x -> total := !total +. float_of_int x ; print_int x) ;
   	Printf.printf "\n" ;
 
-  	(* total probability *)
+  	(* total probability instead of rolling probability *)
   	Printf.printf "%f" (!total /. float_of_int num_trials) ;
 
   	Printf.printf "\nEnding binomial distribution\n"
 
 ;;
 
+let binomial_pdf _ =
+
+	Printf.printf "\nStarting binomial distribution PDF...\n" ;
+
+	(* with given prob of success, give probability of recieving 'x' successes *)
+	let prob_success = 0.3 in
+
+	(* out of 'n' trials *)
+	let choices = [|0;1;2;3|] in
+	let outcomes = Array.map (Stats.binomial_pdf ~p:prob_success ~n:3) choices in
+	outcomes |> Array.iteri (fun i x -> Printf.printf "%i : %f\n" i x);
+
+	(* prints CDF of whole distribution = 1*)
+	(* print_float (Array.fold_left (+.) 0. outcomes) ; *)
+
+	Printf.printf "Ending binomial distribution PDF\n"
+
+;;
+
+let binomial_cdf _ =
+
+	Printf.printf "\nStarting binomial distribution CDF...\n" ;
+
+	let prob_success = 0.3 in
+
+	(* gives CDF of above binomial dist. PDF *)
+	(* CDF can also be easily derived by summing across PDF *)
+	let choices = [|0;1;2;3|] in
+	let outcomes = Array.map (Stats.binomial_cdf ~p:prob_success ~n:3) choices in
+	outcomes |> Array.iteri (fun i x -> Printf.printf "%i : %f\n" i x);
+
+	Printf.printf "Ending binomial distribution CDF\n"
+
+;;
+
 let _ = 
 	monte_carlo () ;
-	binomial_dist ()
-
-
+	binomial_dist () ;
+	binomial_pdf () ;
+	binomial_cdf () 
