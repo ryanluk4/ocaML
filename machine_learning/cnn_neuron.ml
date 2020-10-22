@@ -112,11 +112,30 @@ let trainNetwork () =
 	let params = Params.config
     	~batch:(Batch.Mini 100) ~learning_rate:(Learning_Rate.Adagrad 0.005)
     	(* checkpoint provides snapshots every epoch*)
-    	(* ~checkpoint:(Checkpoint.Epoch 1.) *) ~stopping:(Stopping.Const 1e-6) 10.
+    	~checkpoint:(Checkpoint.Epoch 5.) ~stopping:(Stopping.Const 1e-6) 10.
   	in
-  	Graph.train ~params network x y
-
+  	Graph.train ~params network x y |> ignore ;
+  network
 ;;
+
+let testNetwork network =
+  (* data *)
+  let images, _, labels = Dataset.load_mnist_test_data () in
+  let rows = Dense.Matrix.S.row_num images in
+  let images = Dense.Ndarray.S.reshape images [|rows;28;28;1|] in
+
+  (* format *)
+  let mat2num x = Dense.Matrix.S.of_array (
+      x |> Dense.Matrix.Generic.max_rows
+        |> Array.map (fun (_,_,num) -> float_of_int num)
+    ) 1 rows
+  in
+
+  (* matching prediction *)
+  let pred = mat2num (Graph.model network images) in
+  let fact = mat2num labels in
+  let accu = Dense.Matrix.S.(elt_equal pred fact |> sum') in
+  Owl_log.info "Accuracy on test set: %f" (accu /. (float_of_int rows))
 
 (*
 	This is a model I made in a machine learning class on the CIFAR dataset, translated
@@ -162,10 +181,12 @@ let trainCSE () =
 	let params = Params.config
     	~batch:(Batch.Mini 100) ~learning_rate:(Learning_Rate.Adagrad 0.005)
     	(* checkpoint provides snapshots every epoch*)
-    	(* ~checkpoint:(Checkpoint.Epoch 1.) *) ~stopping:(Stopping.Const 1e-6) 10.
+    	~checkpoint:(Checkpoint.Epoch 5.) ~stopping:(Stopping.Const 1e-6) 10.
   	in
   	Graph.train ~params network x y
 
 ;;
 
-let _ = trainNetwork ()
+let _ = 
+  let n = trainNetwork () in
+  testNetwork n

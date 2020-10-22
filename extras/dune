@@ -1,0 +1,25 @@
+;; -*- scheme -*-
+
+(executables
+  (names dataframe linear_algebra)
+  (libraries owl)
+)
+
+(env
+  (dev
+    (flags (:standard
+            -w -20 
+            -w -27 
+            -w -32 
+            -w -33
+            -w -34 
+            -w -35
+            -w -37 
+            -w -39)))
+  (release 
+   (flags (:standard))))
+
+;; silencing warnings
+;; warning 33, silence unused openings
+;; warning 35, silence unused for-loop index
+;; the rest are from Jane Street's dune files
