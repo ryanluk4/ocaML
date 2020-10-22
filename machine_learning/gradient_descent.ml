@@ -16,7 +16,6 @@ let rec gradient_desc ?(eta=F 0.01) ?(eps=1e-6) f x =
 
 
 let _ =
-  (* [f] must be  [f : scalar -> scalar] *)
-  let f = Maths.sin in
-  let y = gradient_desc f (F (Stats.std_uniform_rvs ())) in
+  let f = Maths.sin in (* original function *)
+  let y = gradient_desc f (F (Stats.std_uniform_rvs ())) in (* random var starting *)
   Owl_log.info "argmin f(x) = %g" (unpack_flt y)

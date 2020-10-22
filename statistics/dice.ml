@@ -24,7 +24,7 @@
 (* Weights corresponding to values 1 through 6 *)
 let weights = [| 0.1;0.1;0.1;0.1;0.1;0.5 |]
 
-let () =
+let monte_carlo _ =
 	
 	(* initiates Random *)
 	Random.self_init () ;
@@ -77,3 +77,6 @@ let () =
 
 	done
 ;;
+
+let _ =
+	monte_carlo ()

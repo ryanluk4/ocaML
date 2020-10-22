@@ -9,6 +9,7 @@
   (dev
     (flags (:standard
             -w -20 
+            -w -26
             -w -27 
             -w -32 
             -w -33
@@ -20,6 +21,7 @@
    (flags (:standard))))
 
 ;; silencing warnings
+;; warning 26, silence unused variable
 ;; warning 33, silence unused openings
 ;; warning 35, silence unused for-loop index
 ;; the rest are from Jane Street's dune files
