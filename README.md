@@ -96,7 +96,7 @@ dune exec ./dice.exe
 
 ### CNN
 
-This example simulates images recognition on a CNN for the CIFAR-10 dataset, using the `Neural.S` module from the `owl` library. This is a replication of a machine learning class I took, so it includes different layers (convolution, fully-connected, max pooling, dropout, softmax), parameters (learning rate, batch, activation functions), and CNN concepts (layer sizes, filter sizes, padding).
+These examples simulate image recognition on a CNN for the MNIST and CIFAR-10 datasets. One set (`cnn_neuron.ml`) uses the built-in `Neural.S` module and tests accuracy across trials. The other set (`cnn_scratch.ml`) is built from scratch using type definitions, classifying digits. Includes different layers (convolution, fully-connected, max pooling, dropout, softmax), parameters (learning rate, batch, activation functions), and CNN concepts (layer sizes, filter sizes, padding, loss functions, back propagation).
 
 **cnn_neuron.ml**
 
@@ -104,11 +104,13 @@ These networks use the built-in `Neural.S` module and tests on accuracy across t
 
 One network is the exact CNN I made for the class, converted from Python (Tensorflow/Keras). This model achieved around 0.76 accuracy and validation on the Python dataset. I only changed the optimizer/learning rate to Adagrad, from SGD.
 
-The other network is more straightforward, with more even convolution layers, less dense layers, and less dropout. This model achieves lower loss values than the one above, which is most likely due to the structure and how the data is evaluated (I am not sure how the training works on the backend). 
+The other network is more straightforward, with more evenly sized convolution layers, less dense layers, and less dropout.
 
 **cnn_scratch.ml**
 
 These networks are built from scratch, using type definitions. The network and layers are evaluated using a loss function and backpropagation. In the end, the final layer is softmax 10 for digit classification. From random sampling, these tests give a probability that the image is a given prediciton.
+
+To run:
 
 ```shell
 dune clean
