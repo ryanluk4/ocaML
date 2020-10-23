@@ -2,7 +2,7 @@
 	Ryan Luk
 	ryanluk4@gmail.com
 
-	CNN image recognition, cifar dataset
+	CNN image recognition, mnist dataset
 *)
 
 open! Owl
