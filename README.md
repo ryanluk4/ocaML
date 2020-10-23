@@ -2,7 +2,7 @@
 
 ## Motivation
 
-I absolutely love statistics and want to gain more experience with hands-on machine learning. Functional programming is also a difficult (being self-taught), but extremely rewarding challenge. 
+I absolutely love statistics and want to gain more experience with hands-on machine learning. The CNN was a great 'build' project and the Monte Carlo simulations covered basic math and statistics. Functional programming is also a difficult (being self-taught), but extremely rewarding challenge. 
 
 ## Installation
 
@@ -62,7 +62,7 @@ This expected value or distribution for binary outcomes can also be modeled by t
 
 `P(X) = mu^x * (1 - mu)^{1-x} where P(X = 1) = mu and X in {0, 1}`
 
-The execution also includes the binomial distribution, binomial PDF, and binomial CDF from the `Stats` module.
+The execution also includes the equivalent binomial distribution, binomial PDF, and binomial CDF from the `Stats` module.
 
 To run:
 

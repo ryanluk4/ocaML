@@ -72,7 +72,7 @@ let monte_carlo _ =
 
 ;;
 
-let binomial_dist _ =
+let mc_binomial_dist _ =
 
 	Printf.printf "\nStarting binomial distribution...\n" ;
 
@@ -130,6 +130,6 @@ let binomial_cdf _ =
 
 let _ = 
 	monte_carlo () ;
-	binomial_dist () ;
+	mc_binomial_dist () ;
 	binomial_pdf () ;
 	binomial_cdf () 
